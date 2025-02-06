@@ -1,6 +1,7 @@
 # Sales Insights Data Analysis Project
-    Designed a Power BI dashboard to understand AtliQ hardware goods sales trend.
-    This dashboard could help in increasing the revenue at least 7% in the next quarter.
+
+    > Designed a Power BI dashboard to understand AtliQ hardware goods sales trend.
+    > This dashboard could help in increasing the revenue at least 7% in the next quarter.
     
 # Data Analysis Using SQL
 1. Show all customer records
@@ -23,7 +24,7 @@
 
         **SELECT * from transactions where currency="USD"**
 
- 6.Show transactions in 2020 join by date table
+  6.Show transactions in 2020 join by date table
 
     **SELECT transactions.*, date.* FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020;**
     
@@ -43,4 +44,4 @@
 # Data Analysis Using Power BI
 1. Formula to create norm_amount column
    
-  =Table.AddColumn(#"cleanup currency", "normalised_sales_amount", each if [currency]="USD#(cr)" then [sales_amount]*75 else [sales_amount])
+        **=Table.AddColumn(#"cleanup currency", "normalised_sales_amount", each if [currency]="USD#(cr)" then [sales_amount]*75 else [sales_amount])**
