@@ -1,47 +1,36 @@
-# Sales Insights Data Analysis Project
+**The Weather Dataset**
 
-    > Designed a Power BI dashboard to understand AtliQ hardware goods sales trend.
-    > This dashboard could help in increasing the revenue at least 7% in the next quarter.
-    
-# Data Analysis Using SQL
-1. Show all customer records
+Here, The Weather Dataset is a time-senes data set with per-hour information about the weather conditions at a particular location. it records Temperature, Dew Point Temperature, Relative Humidity, Wind Speed, Visibility, Pressure, and Conditions.
 
-       **SELECT * FROM customers;**
+# How to Analyze Dataframes?
 
-2. Show total number of customers
+**.head()**
+it shows the first N rows in the data(by default, N=5).
 
-       **SELECT count(*) FROM customers;**
+**.shape**
+it shows the total no.of rows and no.of columns of the dataframe.
 
-3. Show transactions for Chennai market (market code for chennai is Mark001
+**.index**
+This attribute provides the index of the dataframe.
 
-       **SELECT * FROM transactions where market_code='Mark001';**
+**.columns**
+it shows the name of each coulmn.
 
-4. Show distrinct product codes that were sold in chennai
+**.dtypes**
+it shows the data-type of each column.
 
-       **SELECT distinct product_code FROM transactions where market_code='Mark001';**
+**.unique()**
+In a column, it shows all the unique values. it can be applied on a single column as well as on whole dataframe.
 
-5. Show transactions where currency is US dollars
+**.nunique()**
+It shows the total no.of unique values in each column.It can be applied on a single column as well as on a whole dataframe.
 
-        **SELECT * from transactions where currency="USD"**
+**.count**
+It shows the total no.of non-null in each column. It can be applied on a single column as well as on whole dataframe.
 
-  6.Show transactions in 2020 join by date table
+**.value_counts**
+In a column, it shows all the unique values with their count. It can be applied on single column only.
 
-    **SELECT transactions.*, date.* FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020;**
-    
-7. Show total revenue in year 2020,
+**.info()**
+Provides basic information about the dataframe.
 
-       **SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and transactions.currency="INR\r" or transactions.currency="USD\r";**
-
-8. Show total revenue in year 2020, January Month,
-
-       **SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and and date.month_name="January" and (transactions.currency="INR\r" or       
-  transactions.currency="USD\r");**
-
-9. Show total revenue in year 2020 in Chennai
-
-       **SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and transactions.market_code="Mark001";**
-
-# Data Analysis Using Power BI
-1. Formula to create norm_amount column
-   
-        **=Table.AddColumn(#"cleanup currency", "normalised_sales_amount", each if [currency]="USD#(cr)" then [sales_amount]*75 else [sales_amount])**
